@@ -1,0 +1,31 @@
+/*approach:
+  skip first zero.
+  traverse list and keep running sum.
+  if node value is not zero, add to sum.
+  when a 0 found: add a new node with sum. reset sum=0. continue till end and return new list.
+
+  time comp: 0(n)
+  space comp:0(1)
+*/
+class Solution {
+public:
+    ListNode* mergeNodes(ListNode* head) {
+       ListNode* dummy=new ListNode(0);
+       ListNode* david=dummy;
+       ListNode* salt=head->next; //chalaki karo , salt is current ptr.
+       int sum=0;
+       while(salt){
+        if(salt->val==0){
+        david->next=new ListNode(sum);
+        david=david->next;
+        sum=0; 
+        }
+        else{
+           sum+=salt->val;
+
+        }
+        salt=salt->next;
+       }
+       return dummy->next;
+    }
+};
